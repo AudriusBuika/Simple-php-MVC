@@ -17,7 +17,6 @@ class Route
 		$uri = trim($uri, $this->_trim);
 		$this->_listUri[] = $uri;
 		$this->_method[] = $function['method'];
-		//['method' => 'SEND', 'controller' => 'sajanas@index']
 
 		$controller = explode('@', $function['controller']);
 		$this->_controllers[] = ['controllerName' => $controller[0], 'function' => $controller[1]];
@@ -76,7 +75,7 @@ class Route
 		foreach ($this->_listUri as $listKey => $listUri)
 		{
 			$realURL = explode('/', $uri); // Array ( [0] => profile [1] => AUDRIUS )
-			$fakeURL = explode('/', $listUri); //Array ( [0] => profile [1] => {karve:letter} )
+			$fakeURL = explode('/', $listUri); //Array ( [0] => profile [1] => {name:letter} )
 
 			//echo "key: $listKey - value: $listUri --  #^$listUri$# $uri<br/>";
 
@@ -138,7 +137,7 @@ class Route
 							$cObj->GET = $nowGetData;
 						$cObj->{$this->_controllers[$listKey]['function']}();
 					}else
-						die("<html><head><title>ERROR!</title></head><style>body {background-color:black;font-family: Tahoma;}</style><body><h1 style='text-align:center;color: red;'>Toks Controller neegzistuoja!</h1></body></html>");
+						die("<html><head><title>ERROR!</title></head><style>body {background-color:black;font-family: Tahoma;}</style><body><h1 style='text-align:center;color: red;'>Not found controller!</h1></body></html>");
 				break;
 			}
 
